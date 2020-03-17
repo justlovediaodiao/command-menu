@@ -6,11 +6,11 @@ var terminal = undefined;
 // your extension is activated the very first time the command is executed
 function activate(context) {
     // register command
-    var disposable = vscode.commands.registerCommand('custom.customCommand', function (commandContext) {
+    var disposable = vscode.commands.registerCommand('commandMenu.runCommand', async commandContext => {
         // get file path from event arg or current active text editor
         var path = undefined;
         if (commandContext) {
-            path = commandContext.path || commandContext._resourceUri.path
+            path = commandContext.path || commandContext._resourceUri.path;
         }
         else {
             var editor = vscode.window.activeTextEditor;
@@ -21,19 +21,31 @@ function activate(context) {
         if (path) {
             // get terminal
             if (!terminal) {
-                terminal = vscode.window.createTerminal("custom");
+                terminal = vscode.window.createTerminal("command");
             }
-            terminal.show();
             // get command to run
-            config = vscode.workspace.getConfiguration('custommenu')
-            command = config && config.command
-            if (!command) {
-                command = "echo 'no command to run'"
+            var config = vscode.workspace.getConfiguration('commandMenu');
+            var commands = config.commands;
+            if (commands.length == 0) {
+                var command = await vscode.window.showInputBox({placeHolder: 'input a command to run'});
+                if (command) {
+                    terminal.show();
+                    terminal.sendText(command + " " + path)
+                }
             }
             else {
-                command = command + " " + path
+                var command;
+                if (commands.length == 1) {
+                    command = commands[0]
+                } else {
+                    command = await vscode.window.showQuickPick(commands.map(c => {return {label: c.name, description: c.command, command: c.command}}), 
+                                                                {placeHolder: 'select a command to run'});
+                }
+                if (command) {
+                    terminal.show();
+                    terminal.sendText(command.command + " " + path);
+                }
             }
-            terminal.sendText(command);
         }
     });
     // set to undefined when terminal closed
@@ -50,7 +62,7 @@ exports.activate = activate;
 // this method is called when your extension is deactivated
 function deactivate() {
     if (terminal) {
-        terminal.dispose()
+        terminal.dispose();
         terminal = undefined;
     }
 }

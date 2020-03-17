@@ -1,0 +1,49 @@
+{
+	"name": "command-menu",
+	"displayName": "Command Menu",
+	"description": "Run command by context menu",
+	"version": "0.1.0",
+	"publisher": "justlovediaodiao",
+	"engines": {
+		"vscode": "^1.43.0"
+	},
+	"activationEvents": [
+		"onCommand:commandMenu.runCommand"
+	],
+	"main": "./extension",
+	"contributes": {
+		"commands": [
+			{
+				"command": "commandMenu.runCommand",
+				"category": "Command Menu",
+				"title": "Run Command"
+			}
+		],
+		"menus": {
+			"explorer/context": [
+				{
+					"command": "commandMenu.runCommand"
+				}
+			],
+			"scm/resourceState/context": [
+                {
+                    "command": "commandMenu.runCommand"
+                }
+			],
+			"editor/context": [
+                {
+                    "command": "commandMenu.runCommand"
+                }
+			]
+		},
+		"configuration": {
+            "properties": {
+                "commandMenu.commands": {
+					"type": "array",
+					"default": [],
+                    "description": "commands to run by context menu"
+                }
+            }
+        }
+	}
+}
