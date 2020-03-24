@@ -1,6 +1,6 @@
 ## command menu
 
-An externtion for vscode. It adds a context menu to vscode and run command when be clicked.   
+An externtion for vscode. It adds a context menu to vscode and execute a command when be clicked.   
 
 ### install
 
