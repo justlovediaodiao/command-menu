@@ -5,7 +5,7 @@
 	"version": "0.1.0",
 	"publisher": "justlovediaodiao",
 	"engines": {
-		"vscode": "^1.43.0"
+		"vscode": "^1.48.0"
 	},
 	"activationEvents": [
 		"onCommand:commandMenu.runCommand"
