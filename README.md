@@ -4,8 +4,8 @@ An externtion for vscode. It adds a context menu to vscode and execute a command
 
 ### install
 
-Copy the folder `justlovediaodiao-menu-command-0.1.0` to `~/.vscode/extensions/` and restart vscode.
+Copy the folder `justlovediaodiao.command-menu-0.1.0` to `~/.vscode/extensions/` and restart vscode.
 
 ### config
 
-See [README.md](justlovediaodiao-menu-command-0.1.0/README.md).
+See [README.md](justlovediaodiao.command-menu-0.1.0/README.md).
