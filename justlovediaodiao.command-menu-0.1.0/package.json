@@ -5,11 +5,8 @@
 	"version": "0.1.0",
 	"publisher": "justlovediaodiao",
 	"engines": {
-		"vscode": "^1.67.0"
+		"vscode": "^1.75.0"
 	},
-	"activationEvents": [
-		"onCommand:commandMenu.runCommand"
-	],
 	"main": "./extension",
 	"contributes": {
 		"commands": [
