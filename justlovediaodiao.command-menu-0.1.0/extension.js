@@ -62,7 +62,7 @@ function activate(context) {
             }
         }
         if (command) {
-            command = command.replace('{}', `"${path}"`);
+            command = command.replace(/\{\}/g, `"${path}"`);
             t.show();
             t.sendText(command);
         }
